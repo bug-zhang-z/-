@@ -193,6 +193,8 @@ content:
       - name: body
         label: 正文
         type: code
+        options:
+          format: mdx
         description: MDX 格式（包含 JSX 组件），使用代码模式编辑
 
   # ============================================================
