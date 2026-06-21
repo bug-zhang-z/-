@@ -220,8 +220,6 @@ content:
     type: file
     path: src/config/siteConfig.ts
     format: code
-    options:
-      language: typescript
 
 settings:
   content:
