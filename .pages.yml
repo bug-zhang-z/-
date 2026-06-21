@@ -1,0 +1,221 @@
+# PagesCMS 配置 - Firefly 博客
+# 在 https://app.pagescms.org 中导入此仓库即可管理博客内容
+
+media:
+  # 文章配图 - 直接放在文章目录的 images 子文件夹
+  - name: post-images
+    label: 文章配图
+    input: src/content/posts/images
+    output: /images
+    categories: [image]
+
+  # public 静态资源 - 封面、音乐封面等
+  - name: assets
+    label: 站点资源
+    input: public/assets
+    output: /assets
+    categories: [image]
+
+  # 头图 / 壁纸等
+  - name: banner
+    label: 站点头图
+    input: public/assets/images
+    output: /assets/images
+    categories: [image]
+
+content:
+  # ========== 博客文章 ==========
+  - name: posts
+    label: 📝 博客文章
+    type: collection
+    path: src/content/posts
+    # 文章文件名保持原名，排除 images 子文件夹
+    exclude: "**/images/**"
+    format: yaml-frontmatter
+    extension: md
+    view:
+      primary: title
+      fields: [title, published, tags, category, draft, pinned]
+      sort: ["published desc", "title asc"]
+      search: [title, description, tags, category]
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+        description: 文章标题
+
+      - name: published
+        label: 发布时间
+        type: date
+        required: true
+        options:
+          time: false
+          format: yyyy-MM-dd
+
+      - name: updated
+        label: 更新时间
+        type: date
+        options:
+          time: false
+          format: yyyy-MM-dd
+
+      - name: draft
+        label: 草稿
+        type: boolean
+        default: false
+
+      - name: description
+        label: 文章摘要
+        type: text
+        description: 简短描述，留空则自动截取正文
+
+      - name: image
+        label: 封面图
+        type: image
+        description: 文章封面图片路径（如 ./images/cover.avif 或 /assets/...）
+
+      - name: tags
+        label: 标签
+        type: select
+        options:
+          multiple: true
+          creatable: true
+          values:
+            - 演示
+            - 示例
+            - Markdown
+            - Firefly
+            - 博客
+            - 主题
+            - 模板
+            - 教程
+            - JavaScript
+            - Astro
+
+      - name: category
+        label: 分类
+        type: string
+        description: 文章分类（如"文章示例"、"技术笔记"）
+
+      - name: lang
+        label: 语言
+        type: select
+        options:
+          values:
+            - { label: 中文, value: "" }
+            - { label: English, value: en }
+            - { label: 日本語, value: ja }
+            - { label: 繁體中文, value: zh_TW }
+            - { label: Русский, value: ru }
+
+      - name: pinned
+        label: 置顶
+        type: boolean
+        default: false
+
+      - name: author
+        label: 作者
+        type: string
+        description: 覆盖默认作者名（通常留空）
+
+      - name: sourceLink
+        label: 原文链接
+        type: string
+        description: 转载/翻译文章的原始出处
+
+      - name: licenseName
+        label: 许可协议名称
+        type: string
+        description: 如 "CC BY-NC-SA 4.0"
+
+      - name: licenseUrl
+        label: 许可协议链接
+        type: string
+
+      - name: comment
+        label: 启用评论
+        type: boolean
+        default: true
+
+      - name: password
+        label: 文章密码
+        type: string
+        description: 设置后文章需要密码才能查看（留空为公开）
+
+      - name: passwordHint
+        label: 密码提示
+        type: string
+        description: 提示访问者密码是什么
+
+      - name: body
+        label: 正文
+        type: rich-text
+        required: true
+
+  # ========== 特殊页面 ==========
+  - name: about
+    label: 📄 关于页面
+    type: file
+    path: src/content/spec/about.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: 页面标题
+        type: string
+        default: "关于我"
+      - name: body
+        label: 正文
+        type: rich-text
+
+  - name: friends
+    label: 🔗 友情链接
+    type: file
+    path: src/content/spec/friends.mdx
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: 页面标题
+        type: string
+        default: 友情链接
+      - name: description
+        label: 页面描述
+        type: string
+      - name: body
+        label: 正文
+        type: code
+        description: MDX 格式（包含 JSX 组件），请使用代码模式编辑
+
+  - name: guestbook
+    label: 📬 留言板
+    type: file
+    path: src/content/spec/guestbook.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: 页面标题
+        type: string
+        default: 留言板
+      - name: body
+        label: 正文
+        type: rich-text
+
+  # ========== 博客配置（可选） ==========
+  - name: site-config
+    label: ⚙️ 站点配置
+    type: file
+    path: src/config/siteConfig.ts
+    format: none
+    fields:
+      - name: body
+        label: 配置文件（TypeScript）
+        type: code
+        description: 直接编辑 TypeScript 配置，修改站点标题、图标、分页等
+
+settings:
+  # 使用 merge 模式避免冲突
+  merge: false
+  # 默认分支
+  branch: master
+  # 每页显示数量
+  page_size: 20
