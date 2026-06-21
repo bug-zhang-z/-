@@ -76,4 +76,4 @@ export const sponsorConfig: SponsorConfig = {
 		//	date: "2025-10-01",
 	//	},
 //	],
-//};
+};
