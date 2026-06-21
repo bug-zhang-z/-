@@ -1,6 +1,15 @@
 # PagesCMS 配置 - Firefly 博客
 # 基于 PagesCMS v2.x 官方 schema 编写
 # 文档: https://pagescms.org/docs/configuration/
+#
+# 配置分为两种编辑模式：
+# 🟢 简易模式 (format: json) — 像写文章一样，通过表单字段编辑
+#    许可证、公告栏、PlantUML、代码块样式
+# 🟡 代码模式 (format: code) — 直接编辑 TypeScript 源文件
+#    站点主配置、个人信息、导航栏、侧边栏、页脚、字体、
+#    封面图、背景壁纸、评论、统计、音乐、打赏、友链、樱花、相册、看板娘
+# 🔵 内容模式 (format: yaml-frontmatter) — 编辑博客内容
+#    博客文章、关于页面、友情链接、留言板
 
 media:
   # 文章配图 - 上传到文章目录的 images 子文件夹
@@ -238,16 +247,58 @@ content:
       - name: announcement-config
         label: 📢 公告栏
         type: file
-        path: src/config/announcementConfig.ts
-        format: code
+        path: src/config/data/announcement.json
+        format: json
         description: 博客顶部公告栏的标题、内容和链接配置
+        fields:
+          - name: title
+            label: 公告标题
+            type: string
+            default: 公告
+          - name: content
+            label: 公告内容
+            type: text
+            required: true
+          - name: closable
+            label: 允许关闭
+            type: boolean
+            default: true
+          - name: linkEnable
+            label: 启用链接
+            type: boolean
+            default: true
+          - name: linkText
+            label: 链接文字
+            type: string
+            default: 了解更多
+          - name: linkUrl
+            label: 链接地址
+            type: string
+            default: /about/
+          - name: linkExternal
+            label: 外部链接
+            type: boolean
+            default: false
 
       - name: license-config
         label: 📜 许可协议
         type: file
-        path: src/config/licenseConfig.ts
-        format: code
+        path: src/config/data/license.json
+        format: json
         description: 文章底部版权声明（如 CC BY-NC-SA 4.0）
+        fields:
+          - name: enable
+            label: 启用许可协议
+            type: boolean
+            default: true
+          - name: name
+            label: 许可证名称
+            type: string
+            default: CC BY-NC-SA 4.0
+          - name: url
+            label: 许可证链接
+            type: string
+            default: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
   # ============================================================
   # 🎨 布局与外观
@@ -309,9 +360,41 @@ content:
       - name: expressive-code-config
         label: 💻 代码块样式
         type: file
-        path: src/config/expressiveCodeConfig.ts
-        format: code
+        path: src/config/data/expressive-code.json
+        format: json
         description: 代码高亮主题、折叠插件、语言徽章等代码块配置
+        fields:
+          - name: darkTheme
+            label: 暗色主题
+            type: string
+            default: one-dark-pro
+          - name: lightTheme
+            label: 亮色主题
+            type: string
+            default: one-light
+          - name: collapsibleEnable
+            label: 启用代码折叠
+            type: boolean
+            default: true
+          - name: collapsibleLineThreshold
+            label: 折叠行数阈值
+            type: number
+            default: 15
+            description: 超过此行数显示折叠按钮
+          - name: collapsiblePreviewLines
+            label: 折叠预览行数
+            type: number
+            default: 8
+            description: 折叠时显示的行数
+          - name: collapsibleDefaultCollapsed
+            label: 默认折叠
+            type: boolean
+            default: true
+            description: 长代码块默认折叠
+          - name: languageBadgeEnable
+            label: 显示语言徽章
+            type: boolean
+            default: true
 
   # ============================================================
   # 🔧 功能配置
@@ -380,9 +463,26 @@ content:
       - name: plantuml-config
         label: 📐 PlantUML 图表
         type: file
-        path: src/config/plantumlConfig.ts
-        format: code
+        path: src/config/data/plantuml.json
+        format: json
         description: PlantUML 服务器地址和明暗主题配置
+        fields:
+          - name: enable
+            label: 启用 PlantUML
+            type: boolean
+            default: true
+          - name: server
+            label: 服务器地址
+            type: string
+            default: https://www.plantuml.com/plantuml
+          - name: lightTheme
+            label: 亮色主题
+            type: string
+            description: 留空使用 PlantUML 默认外观
+          - name: darkTheme
+            label: 暗色主题
+            type: string
+            default: cyborg
 
 settings:
   content:

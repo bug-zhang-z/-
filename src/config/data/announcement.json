@@ -1,0 +1,9 @@
+{
+  "title": "公告",
+  "content": "欢迎来到bug的博客！这是一则示例公告。",
+  "closable": true,
+  "linkEnable": true,
+  "linkText": "了解更多",
+  "linkUrl": "/about/",
+  "linkExternal": false
+}

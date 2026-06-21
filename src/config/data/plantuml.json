@@ -1,0 +1,6 @@
+{
+  "enable": true,
+  "server": "https://www.plantuml.com/plantuml",
+  "lightTheme": "",
+  "darkTheme": "cyborg"
+}

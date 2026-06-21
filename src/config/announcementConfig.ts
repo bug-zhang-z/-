@@ -1,23 +1,14 @@
-import type { AnnouncementConfig } from "../types/announcementConfig";
+import announcementData from "./data/announcement.json";
+import type { AnnouncementConfig } from "../types/config";
 
 export const announcementConfig: AnnouncementConfig = {
-	// 公告标题
-	title: "公告",
-
-	// 公告内容
-	content: "欢迎来到bug的博客！这是一则示例公告。",
-
-	// 是否允许用户关闭公告
-	closable: true,
-
+	title: announcementData.title,
+	content: announcementData.content,
+	closable: announcementData.closable,
 	link: {
-		// 启用链接
-		enable: true,
-		// 链接文本
-		text: "了解更多",
-		// 链接 URL
-		url: "/about/",
-		// 内部链接
-		external: false,
+		enable: announcementData.linkEnable,
+		text: announcementData.linkText,
+		url: announcementData.linkUrl,
+		external: announcementData.linkExternal,
 	},
 };
