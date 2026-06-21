@@ -1,22 +1,23 @@
 # PagesCMS 配置 - Firefly 博客
-# 在 https://app.pagescms.org 中导入此仓库即可管理博客内容
+# 基于 PagesCMS v0.4.x 官方 schema 编写
+# 文档: https://pagescms.org/docs/configuration/
 
 media:
-  # 文章配图 - 直接放在文章目录的 images 子文件夹
+  # 文章配图 - 上传到文章目录的 images 子文件夹
   - name: post-images
     label: 文章配图
     input: src/content/posts/images
     output: /images
     categories: [image]
 
-  # public 静态资源 - 封面、音乐封面等
+  # public 静态资源 - 封面图、音乐封面等
   - name: assets
     label: 站点资源
     input: public/assets
     output: /assets
     categories: [image]
 
-  # 头图 / 壁纸等
+  # 头图 / 壁纸
   - name: banner
     label: 站点头图
     input: public/assets/images
@@ -24,20 +25,24 @@ media:
     categories: [image]
 
 content:
-  # ========== 博客文章 ==========
+  # ============================================================
+  # 博客文章 (collection)
+  # ============================================================
   - name: posts
     label: 📝 博客文章
     type: collection
     path: src/content/posts
-    # 文章文件名保持原名，排除 images 子文件夹
-    exclude: "**/images/**"
     format: yaml-frontmatter
-    extension: md
+    filename: "{primary}.md"
+    exclude: ["**/images/**"]
     view:
       primary: title
       fields: [title, published, tags, category, draft, pinned]
       sort: ["published desc", "title asc"]
       search: [title, description, tags, category]
+      default:
+        sort: published
+        order: desc
     fields:
       - name: title
         label: 标题
@@ -73,7 +78,7 @@ content:
       - name: image
         label: 封面图
         type: image
-        description: 文章封面图片路径（如 ./images/cover.avif 或 /assets/...）
+        description: 文章封面图片路径
 
       - name: tags
         label: 标签
@@ -82,16 +87,15 @@ content:
           multiple: true
           creatable: true
           values:
-            - 演示
-            - 示例
-            - Markdown
-            - Firefly
-            - 博客
-            - 主题
-            - 模板
-            - 教程
-            - JavaScript
-            - Astro
+            - { label: 演示, value: 演示 }
+            - { label: 示例, value: 示例 }
+            - { label: Markdown, value: Markdown }
+            - { label: Firefly, value: Firefly }
+            - { label: 博客, value: 博客 }
+            - { label: 主题, value: 主题 }
+            - { label: 教程, value: 教程 }
+            - { label: JavaScript, value: JavaScript }
+            - { label: Astro, value: Astro }
 
       - name: category
         label: 分类
@@ -127,7 +131,7 @@ content:
       - name: licenseName
         label: 许可协议名称
         type: string
-        description: 如 "CC BY-NC-SA 4.0"
+        description: 如 CC BY-NC-SA 4.0
 
       - name: licenseUrl
         label: 许可协议链接
@@ -141,7 +145,7 @@ content:
       - name: password
         label: 文章密码
         type: string
-        description: 设置后文章需要密码才能查看（留空为公开）
+        description: 设置后需要密码才能查看（留空为公开）
 
       - name: passwordHint
         label: 密码提示
@@ -153,7 +157,9 @@ content:
         type: rich-text
         required: true
 
-  # ========== 特殊页面 ==========
+  # ============================================================
+  # 关于页面 (file)
+  # ============================================================
   - name: about
     label: 📄 关于页面
     type: file
@@ -168,6 +174,9 @@ content:
         label: 正文
         type: rich-text
 
+  # ============================================================
+  # 友情链接 (file)
+  # ============================================================
   - name: friends
     label: 🔗 友情链接
     type: file
@@ -184,8 +193,11 @@ content:
       - name: body
         label: 正文
         type: code
-        description: MDX 格式（包含 JSX 组件），请使用代码模式编辑
+        description: MDX 格式（包含 JSX 组件），使用代码模式编辑
 
+  # ============================================================
+  # 留言板 (file)
+  # ============================================================
   - name: guestbook
     label: 📬 留言板
     type: file
@@ -200,22 +212,17 @@ content:
         label: 正文
         type: rich-text
 
-  # ========== 博客配置（可选） ==========
+  # ============================================================
+  # 站点配置 - TypeScript 源文件 (file)
+  # ============================================================
   - name: site-config
     label: ⚙️ 站点配置
     type: file
     path: src/config/siteConfig.ts
-    format: none
-    fields:
-      - name: body
-        label: 配置文件（TypeScript）
-        type: code
-        description: 直接编辑 TypeScript 配置，修改站点标题、图标、分页等
+    format: code
+    options:
+      language: typescript
 
 settings:
-  # 使用 merge 模式避免冲突
-  merge: false
-  # 默认分支
-  branch: master
-  # 每页显示数量
-  page_size: 20
+  content:
+    merge: false
