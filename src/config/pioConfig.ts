@@ -85,14 +85,14 @@ export const spineModelConfig: SpineModelConfig = {
 // Live2D 看板娘配置 (使用 l2d-widget 库，文档：https://l2d-widget.hacxy.cn)
 export const live2dWidgetConfig: Live2DWidgetConfig = {
 	// Live2D 看板娘开关
-	enable: false,
+	enable: true,
 	// 模型配置，支持单个模型或数组（多模型切换）
 	model: [
 		{
 			// Live2D模型本地文件路径
 			path: "/pio/models/live2d/snow_miku/model.json",
 			// 动作声音音量 范围0~1，默认 0（静音）
-			volume: 0,
+			volume: 1,
 			// 模型缩放比例
 			scale: 1,
 			// X轴偏移，范围 -2~2，正值向右
