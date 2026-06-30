@@ -92,7 +92,7 @@ export const live2dWidgetConfig: Live2DWidgetConfig = {
 			// Live2D模型本地文件路径
 			path: "/pio/models/live2d/snow_miku/model.json",
 			// 动作声音音量 范围0~1，默认 0（静音）
-			volume: 0,
+			volume: 1,
 			// 模型缩放比例
 			scale: 1,
 			// X轴偏移，范围 -2~2，正值向右
