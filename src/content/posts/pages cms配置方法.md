@@ -3,9 +3,11 @@ title: pages cms配置方法
 published: 2026-06-30
 updated: 2026-06-30
 draft: false
+image: /images/cms.avif
 tags:
   - 教程
   - 博客
+category: cms
 pinned: true
 author: bug
 comment: false
