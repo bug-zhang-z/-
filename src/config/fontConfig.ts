@@ -7,7 +7,7 @@ export const fontConfig: FontConfig = {
 	// 是否预加载字体文件
 	preload: true,
 	// 当前选择的字体，支持多个字体组合
-	selected: ["system"],
+	selected: ["Ma Shan Zheng"],
 
 	// 各区域独立字体设置（填写下方 fonts 中的字体 ID，留空则使用全局 selected 字体）
 	// 横幅标题字体
@@ -33,11 +33,11 @@ export const fontConfig: FontConfig = {
 		},
 
 		// Google Fonts - Zen Maru Gothic
-		"zen-maru-gothic": {
-			id: "zen-maru-gothic",
+		"Ma Shan Zheng": {
+			id: "Ma Shan Zheng",
 			name: "Zen Maru Gothic",
-			src: "https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap",
-			family: "Zen Maru Gothic",
+			src: "https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap",
+			family: "Ma Shan Zheng",
 			display: "swap" as const,
 		},
 
