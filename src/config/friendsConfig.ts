@@ -28,7 +28,7 @@ export const friendsConfig: FriendLink[] = [
 			"https://bugzhang.online/_astro/avatar.Da2_m5jG_2uF8Oi.webp",
 		desc: "我到底还要写多少bug。",
 		siteurl: "https://bugzhang.online",
-		tags: ["Blog"],
+		tags: ["我"],
 		weight: 10, // 权重，数字越大排序越靠前
 		enabled: true, // 是否启用
 	},
