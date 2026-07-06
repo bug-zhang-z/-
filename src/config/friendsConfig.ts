@@ -24,12 +24,29 @@ export const friendsPageConfig: FriendsPageConfig = {
 export const friendsConfig: FriendLink[] = [
 	{
 		title: "bug_zhang",
-		imgurl:
-			"https://bugzhang.online/_astro/avatar.Da2_m5jG_2uF8Oi.webp",
+		imgurl:"https://bugzhang.online/_astro/avatar.Da2_m5jG_2uF8Oi.webp",
 		desc: "我到底还要写多少bug。",
 		siteurl: "https://bugzhang.online",
 		tags: ["我"],
 		weight: 10, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "年华",
+		imgurl:"https://q1.qlogo.cn/g?b=qq&nk=1323860289&s=640",
+		desc: "分享生活和技术。",
+		siteurl: "https://blog.amamo.top",
+		tags: ["年华"],
+		weight: 9, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "董健颖",
+		imgurl:"https://weavatar.com/api/avatar/e3e6c5e34c0111ab1a16acb37cec03f01907406e60b49477c089001f5ed083b8?s=50&t=1781771969751?s=640",
+		desc: "一个记录生活和bug的人-还在迭代ing",
+		siteurl: "https://dongjianying.xyz",
+		tags: ["董健颖"],
+		weight: 9, // 权重，数字越大排序越靠前
 		enabled: true, // 是否启用
 	},
 	{
