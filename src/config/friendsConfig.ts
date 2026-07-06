@@ -46,7 +46,7 @@ export const friendsConfig: FriendLink[] = [
 		desc: "一个记录生活和bug的人-还在迭代ing",
 		siteurl: "https://dongjianying.xyz",
 		tags: ["董健颖"],
-		weight: 9, // 权重，数字越大排序越靠前
+		weight: 8, // 权重，数字越大排序越靠前
 		enabled: true, // 是否启用
 	},
 	{
