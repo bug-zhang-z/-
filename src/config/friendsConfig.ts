@@ -31,6 +31,15 @@ export const friendsConfig: FriendLink[] = [
 		weight: 10, // 权重，数字越大排序越靠前
 		enabled: true, // 是否启用
 	},
+	 {
+        title: "JustPureH2O",
+        imgurl: "https://justpureh2o.cn/avatar.jpg",
+        desc: "穷方圆平直之情，尽规矩准绳之用",
+        siteurl: "https://justpureh2o.cn/",
+        tags: [],
+        weight: 7, // 权重，数字越大排序越靠前
+        enabled: true, // 是否启用
+    },
 	{
 		title: "年华",
 		imgurl:"https://q1.qlogo.cn/g?b=qq&nk=1323860289&s=640",
